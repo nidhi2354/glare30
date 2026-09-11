@@ -97,7 +97,7 @@ export default function Footer() {
           <p>
             © {year} {brand.fullName}. All rights reserved.
           </p>
-          <p>Coaching for Class 6th to 12th · CBSE · JEE · NEET</p>
+          <p>Coaching for Class 6th to 12th · CBSE · IIT-JEE · NEET</p>
         </div>
       </Container>
     </footer>

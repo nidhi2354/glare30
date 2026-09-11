@@ -1,12 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Glare30 Institute logo">
   <title>Glare30 Institute</title>
-  <circle cx="120" cy="120" r="118" fill="#159B4C" />
-  <circle cx="120" cy="120" r="105" fill="#14235C" />
-  <circle cx="120" cy="120" r="96" fill="none" stroke="#FFE500" stroke-width="9" />
-  <g fill="none" stroke="#FFE500" stroke-width="23">
-    <circle cx="120" cy="100" r="34" />
-    <path d="M74 150A46 46 0 0 0 166 150" />
+
+  <!-- Navy field -->
+  <circle cx="120" cy="120" r="120" fill="#14235C" />
+
+  <!-- Outer green ring -->
+  <circle cx="120" cy="120" r="115.5" fill="none" stroke="#159B4C" stroke-width="8.9" />
+
+  <!-- Inner gold ring -->
+  <circle cx="120" cy="120" r="100.7" fill="none" stroke="#FFE500" stroke-width="9.7" />
+
+  <!-- 'g' monogram -->
+  <g fill="#FFE500">
+    <!-- head -->
+    <path fill-rule="evenodd" d="M120 52.4a45.9 45.9 0 1 1 0 91.8 45.9 45.9 0 0 1 0-91.8Zm0 20.1a25.8 25.8 0 1 0 0 51.6 25.8 25.8 0 0 0 0-51.6Z" />
+    <!-- nib / flag on the head -->
+    <path d="M113.6 47.5H160.3L150.6 68.4 113.6 62Z" />
+    <!-- smile -->
+    <path d="M74.95 147a45.05 45.05 0 0 0 90.1 0h-20.1a24.95 24.95 0 0 1-49.9 0Z" />
   </g>
-  <path d="M143 100h23v50h-23z" fill="#FFE500" />
-  <path d="M143 54h39l-24 34h-15z" fill="#FFE500" />
 </svg>

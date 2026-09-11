@@ -13,7 +13,7 @@ export const brand = {
   tagline: 'Coaching for Class 6th to 12th',
   description:
     'The C.B.S.E. curriculum combined with preparation for NTSE, JSTSE, Olympiads, IIT-JEE and NEET — all under one roof.',
-  logo: '/logo.svg', // Drop the client's original PNG into public/ and change this to '/logo.png'
+  logo: '/logo.svg', // Client's original artwork: drop it into public/ and point this at e.g. '/logo.png'
 }
 
 export const contact = {
@@ -42,7 +42,7 @@ export const navLinks = [
 ]
 
 export const hero = {
-  eyebrow: 'CBSE · NTSE · JSTSE · Olympiads · JEE · NEET',
+  eyebrow: 'CBSE · NTSE · JSTSE · Olympiads · IIT-JEE · NEET',
   title: 'Strong Concepts.',
   titleAccent: 'Better Results.',
   subtitle:
