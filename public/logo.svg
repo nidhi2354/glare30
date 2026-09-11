@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Glare30 Institute logo">
+  <title>Glare30 Institute</title>
+  <circle cx="120" cy="120" r="118" fill="#159B4C" />
+  <circle cx="120" cy="120" r="105" fill="#14235C" />
+  <circle cx="120" cy="120" r="96" fill="none" stroke="#FFE500" stroke-width="9" />
+  <g fill="none" stroke="#FFE500" stroke-width="23">
+    <circle cx="120" cy="100" r="34" />
+    <path d="M74 150A46 46 0 0 0 166 150" />
+  </g>
+  <path d="M143 100h23v50h-23z" fill="#FFE500" />
+  <path d="M143 54h39l-24 34h-15z" fill="#FFE500" />
+</svg>
