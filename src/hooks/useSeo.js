@@ -25,4 +25,4 @@ export function useSeo({ title, description }) {
   }, [title, description])
 }
 
-export default useSeo
+export default useSeo;

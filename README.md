@@ -204,8 +204,79 @@ karne par 404 aayega.
   ```
 - **Nginx** — `try_files $uri $uri/ /index.html;`
 
+## Admin Dashboard (`/admin`)
+
+Institute ke andar ka kaam dekhne ke liye ek alag admin dashboard hai. Ye website ka
+hissa nahi hai — iska apna shell hai (sidebar + top bar), site ka navbar/footer yahan
+nahi aata. Design tokens wahi hain (navy / gold / leaf), aur koi nayi dependency nahi
+lagi — charts bhi inline SVG me likhe gaye hain.
+
+| Route              | Page      | Kya hai                                                        |
+| ------------------ | --------- | -------------------------------------------------------------- |
+| `/admin`           | Overview  | 4 KPI tiles, enquiry-vs-admission trend, fee collection, aaj ki classes, batch strength, recent enquiries |
+| `/admin/enquiries` | Enquiries | Status counts, search + status filter, status badalne wala dropdown |
+| `/admin/students`  | Students  | Search + class-group filter, attendance meter, fee status       |
+| `/admin/batches`   | Batches   | Batch cards — seats bhare/khaali, din, timing, room             |
+| `/admin/fees`      | Fees      | Collected / pending / overdue, invoice table with balance       |
+
+### ⚠️ Saara data abhi DEMO hai
+
+Backend nahi hai, isliye har figure **sample data** hai — client ke asli students, fees
+ya attendance nahi. Ye sab **`src/data/dashboard.js`** me hai, aur jab tak
+`dashboardMeta.isDemo` true hai, dashboard par "Demo data" badge + ek notice dikhta rehta hai.
+
+Asli data aane par:
+
+1. `src/data/dashboard.js` ke exports ko API `fetch()` se replace karein (shapes flat
+   rakhi gayi hain, components chhedne ki zarurat nahi padegi).
+2. `dashboardMeta.isDemo` ko `false` kar dein — badge aur notice apne aap hat jaayenge.
+3. Client se confirm karein: faculty names, batch timings, fee amounts, academic session.
+
+> Faculty ke naam abhi `TODO:` se shuru hote hain — aise fields page par print hi nahi
+> hote (`isTodo()` in `src/utils/format.js`), taaki koi placeholder galti se dikh na jaaye.
+
+### Auth
+
+Abhi `/admin` khula hua hai — **login nahi laga hai**. Live jaane se pehle ise auth ke
+peeche daalna zaroori hai (`src/App.jsx` me `/admin` route par TODO likha hai).
+
+### Dashboard folder structure
+
+```
+src/
+├── components/dashboard/
+│   ├── DashboardLayout.jsx   # sidebar + header shell (Outlet)
+│   ├── DashSidebar.jsx       # desktop fixed / mobile drawer
+│   ├── DashHeader.jsx        # search, demo badge, session, avatar
+│   └── ui/
+│       ├── Panel.jsx         # card surface (title / subtitle / action)
+│       ├── StatCard.jsx      # KPI tile — value + delta + sparkline
+│       ├── Sparkline.jsx
+│       ├── TrendChart.jsx    # 2-series area+line, hover + keyboard + table view
+│       ├── BarList.jsx       # single-series horizontal bars
+│       ├── Meter.jsx         # progress meter
+│       ├── DataTable.jsx     # shared table + empty state
+│       ├── Toolbar.jsx       # SearchInput + FilterChips
+│       ├── PageHeader.jsx
+│       └── statusTone.js     # status → colour tone mapping
+├── pages/dashboard/          # Overview, Enquiries, Students, Batches, Fees
+├── data/dashboard.js         # ⭐ SAARA DEMO DATA YAHAN
+└── utils/format.js           # ₹ / lakh-crore / delta formatting
+```
+
+### Charts ke baare me
+
+Koi chart library nahi hai — sab inline SVG hai:
+
+- Ek hi y-axis (dual-axis kabhi nahi), solid hairline gridlines, 2px lines.
+- Series colours brand ramps se hain aur colour-blindness ke liye verified: leaf `#159b4c`
+  aur navy `#5269ab`.
+- Har chart ka **"Table" view** bhi hai, aur trend chart arrow keys se bhi padha ja sakta
+  hai — value kabhi sirf hover par nahi milti.
+
 ## Aage kya add ho sakta hai
 
 - Faculty / Results / Gallery pages — client se real data milne par
+- Admin dashboard ke liye login + real API (abhi demo data par chal raha hai)
 - Backend/Email integration for enquiry form
 - Google Analytics / Search Console
