@@ -17,9 +17,9 @@ export const brand = {
 }
 
 export const contact = {
-  phone: '+91 92176 59368',
-  phoneHref: 'tel:+919217659368',
-  whatsapp: '919217659368', // with country code, without the +
+  phone: '+91 91051 37031 / +91 78301 93739',
+  phoneHref: 'tel:+919105137031',
+  whatsapp: '919105137031', // with country code, without the +
   email: 'info@glare30institute.com', // TODO: confirm
   address: 'Plot No. 11, Near Bala Ji Mandir, Khairamod, Najafgarh, Delhi – 110043',
   // Searches Google Maps for the address above. Replace with the institute's own
