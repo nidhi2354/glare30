@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom'
 import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import Logo from '@/components/ui/Logo'
-import { brand, contact, navLinks, programs, socials } from '@/data/site'
+import { brand, contact, navLinks, socials } from '@/data/site'
+import { useCourses } from '@/hooks/useCourses'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { courses } = useCourses()
+  const activeCourses = courses.filter((c) => c.isActive !== false)
 
   return (
     <footer className="relative overflow-hidden bg-navy-900 text-navy-200">
@@ -51,7 +54,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h3 className="text-sm font-bold tracking-widest text-white uppercase">Programs</h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {programs.map((program) => (
+              {activeCourses.map((program) => (
                 <li key={program.id}>
                   <Link to={`/courses/${program.id}`} className="transition-colors hover:text-gold-300">
                     {program.classes} — {program.title}

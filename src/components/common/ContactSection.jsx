@@ -5,8 +5,13 @@ import Icon from '@/components/ui/Icon'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { classOptions, contact } from '@/data/site'
-
-const EMPTY_FORM = { name: '', phone: '', className: '', message: '' }
+import { createInquiry } from '@/services/inquiryService'
+const EMPTY_FORM = {
+  name: '',
+  mobile: '',
+  classStream: '',
+  message: ''
+}
 
 const DETAILS = [
   { icon: 'phone', label: 'Phone', value: contact.phone, href: contact.phoneHref },
@@ -20,31 +25,37 @@ const inputClass =
 
 export default function ContactSection() {
   const [form, setForm] = useState(EMPTY_FORM)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const update = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }))
 
-  /**
-   * There is no backend yet, so the enquiry goes straight to WhatsApp.
-   * To wire up an API later, replace this with fetch('/api/enquiry', …).
-   */
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const text = [
-      'Hello! I would like to know more about Glare30 Institute.',
-      '',
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      `Class: ${form.className || 'Not selected'}`,
-      form.message ? `Message: ${form.message}` : null,
-    ]
-      .filter(Boolean)
-      .join('\n')
+    try {
+      setIsSubmitting(true)
 
-    window.open(`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
-    setForm(EMPTY_FORM)
+      const response = await createInquiry(form);
+
+      console.log('Inquiry submitted:', response)
+
+      alert('Thank you! Your enquiry has been submitted successfully.')
+
+      setForm(EMPTY_FORM)
+    } catch (error) {
+      console.error('Enquiry submission error:', error)
+
+      const message =
+        error.response?.data?.message ||
+        'Something went wrong. Please try again.'
+
+      alert(message)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
-
   return (
     <section id="contact" className="scroll-mt-24 bg-navy-50/40 py-16 sm:py-20 lg:py-24">
       <Container>
@@ -52,7 +63,7 @@ export default function ContactSection() {
           eyebrow="Admissions Open"
           title="Book your"
           accent="free demo class"
-          description="Fill in the form and your enquiry reaches our WhatsApp directly — or simply give us a call."
+          description="Fill in the form and submit your enquiry — our team will get back to you shortly."
         />
 
         <div className="mt-12 grid gap-6 sm:mt-14 lg:grid-cols-5 lg:gap-8">
@@ -140,8 +151,8 @@ export default function ContactSection() {
                   required
                   inputMode="numeric"
                   pattern="[0-9+\s-]{10,15}"
-                  value={form.phone}
-                  onChange={update('phone')}
+                  value={form.mobile}
+                  onChange={update('mobile')}
                   placeholder="10-digit mobile number"
                   className={inputClass}
                 />
@@ -151,7 +162,7 @@ export default function ContactSection() {
                 <label htmlFor="class" className="mb-2 block text-sm font-semibold text-navy-700">
                   Class / Stream
                 </label>
-                <select id="class" value={form.className} onChange={update('className')} className={inputClass}>
+                <select id="class" value={form.classStream} onChange={update('classStream')} className={inputClass}>
                   <option value="">Select a class</option>
                   {classOptions.map((option) => (
                     <option key={option} value={option}>
@@ -176,12 +187,20 @@ export default function ContactSection() {
               </div>
 
               <div className="sm:col-span-2">
-                <Button type="submit" size="lg" icon="arrowRight" className="w-full">
-                  Send Enquiry
+                <Button
+                  type="submit"
+                  size="lg"
+                  icon="arrowRight"
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Send Enquiry'}
                 </Button>
+
                 <p className="mt-3 text-center text-xs text-navy-400">
-                  On submitting, your details open in WhatsApp as a pre-filled message.
+                  Your enquiry will be securely submitted to Glare30.
                 </p>
+
               </div>
             </form>
           </Reveal>

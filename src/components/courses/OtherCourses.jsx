@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom'
 import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import Reveal from '@/components/ui/Reveal'
-import { programs } from '@/data/site'
 
 /** Links to the other class groups, so a visitor never hits a dead end. */
-export default function OtherCourses({ currentId }) {
-  const others = programs.filter((program) => program.id !== currentId)
+export default function OtherCourses({ courses, currentId }) {
+  const others = courses.filter((program) => program.id !== currentId && program.isActive !== false)
+
+  if (others.length === 0) return null
 
   return (
     <section className="bg-navy-50/40 py-16 sm:py-20">

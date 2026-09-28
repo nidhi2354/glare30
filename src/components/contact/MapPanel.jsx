@@ -3,11 +3,8 @@ import Icon from '@/components/ui/Icon'
 import Reveal from '@/components/ui/Reveal'
 import { brand, contact } from '@/data/site'
 
-/**
- * Map + directions.
- * The embed is built from the address itself, so it keeps working when the
- * client sends a proper Google Maps link — only `contact.mapUrl` changes.
- */
+
+
 const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(contact.address)}&output=embed`
 
 const REACH = [
@@ -16,6 +13,8 @@ const REACH = [
   { icon: 'mail', label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
   { icon: 'clock', label: 'Open on', value: contact.timings },
 ]
+
+
 
 export default function MapPanel() {
   return (

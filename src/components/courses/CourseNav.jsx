@@ -3,12 +3,16 @@ import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { coursesPage, programs } from '@/data/site'
+import { coursesPage } from '@/data/site'
+import { useCourses } from '@/hooks/useCourses'
 
 const { intro } = coursesPage
 
-/** The three class groups — each card opens its own course page. */
+/** The class groups — each card opens its own course page. */
 export default function CourseNav() {
+  const { courses, loading, error } = useCourses()
+  const active = courses.filter((c) => c.isActive !== false)
+
   return (
     <section className="bg-white py-14 sm:py-16 lg:py-20">
       <Container>
@@ -19,8 +23,15 @@ export default function CourseNav() {
           description={intro.description}
         />
 
+        {loading ? (
+          <p className="mt-10 text-center text-sm text-navy-400">Loading courses...</p>
+        ) : error ? (
+          <p className="mt-10 text-center text-sm font-semibold text-red-600">{error}</p>
+        ) : active.length === 0 ? (
+          <p className="mt-10 text-center text-sm text-navy-400">No courses added yet.</p>
+        ) : (
         <ol className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3 sm:gap-5">
-          {programs.map((program, i) => (
+          {active.map((program, i) => (
             <Reveal key={program.id} as="li" delay={i * 80}>
               <Link
                 to={`/courses/${program.id}`}
@@ -43,6 +54,7 @@ export default function CourseNav() {
             </Reveal>
           ))}
         </ol>
+        )}
       </Container>
     </section>
   )

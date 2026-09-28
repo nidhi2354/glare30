@@ -4,19 +4,23 @@ import CourseOverview from '@/components/courses/CourseOverview'
 import Includes from '@/components/courses/Includes'
 import OtherCourses from '@/components/courses/OtherCourses'
 import PageHero from '@/components/ui/PageHero'
+import { useCourses } from '@/hooks/useCourses'
 import { useSeo } from '@/hooks/useSeo'
-import { coursesPage, programs } from '@/data/site'
+import { coursesPage } from '@/data/site'
 
-/** One class group, at /courses/foundation | /courses/board | /courses/senior */
+/** One class group, at /courses/:programId */
 export default function CourseDetail() {
   const { programId } = useParams()
-  const program = programs.find((item) => item.id === programId)
+  const { courses, loading } = useCourses()
+  const program = courses.find((item) => item.id === programId)
 
   // Hooks must run on every render, so this one sits above the early return.
   useSeo({
     title: program ? `${program.title} — ${program.classes}` : 'Courses',
     description: program?.summary ?? coursesPage.hero.description,
   })
+
+  if (loading) return null
 
   // Unknown slug → send people to the course list rather than a dead end.
   if (!program) return <Navigate to="/courses" replace />
@@ -32,7 +36,7 @@ export default function CourseDetail() {
 
       <CourseOverview program={program} />
       <Includes />
-      <OtherCourses currentId={program.id} />
+      <OtherCourses courses={courses} currentId={program.id} />
       <CtaBanner {...coursesPage.cta} primaryLabel="Book a Free Demo" />
     </>
   )

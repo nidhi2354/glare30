@@ -263,6 +263,13 @@ const ICONS = {
       <path d="M14.2 6.2l3.6 3.6" />
     </>
   ),
+  trash: (
+    <>
+      <path d="M4.5 7h15M9.5 7V4.8A1.3 1.3 0 0 1 10.8 3.5h2.4A1.3 1.3 0 0 1 14.5 4.8V7" />
+      <path d="M6.5 7l.8 12.2A2 2 0 0 0 9.3 21h5.4a2 2 0 0 0 2-1.8L17.5 7" />
+      <path d="M10.3 11v6M13.7 11v6" />
+    </>
+  ),
 }
 
 export default function Icon({ name, className = 'size-6', ...props }) {

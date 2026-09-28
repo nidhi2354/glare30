@@ -3,7 +3,7 @@ import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { programs } from '@/data/site'
+import { useCourses } from '@/hooks/useCourses'
 import { cn } from '@/utils/cn'
 
 const ACCENTS = {
@@ -111,6 +111,9 @@ function ProgramCard({ program, index }) {
 }
 
 export default function Programs() {
+  const { courses, loading, error } = useCourses()
+  const active = courses.filter((c) => c.isActive !== false)
+
   return (
     <section id="programs" className="scroll-mt-24 bg-navy-50/40 py-16 sm:py-20 lg:py-24">
       <Container>
@@ -121,11 +124,19 @@ export default function Programs() {
           description="We follow the C.B.S.E. curriculum, along with preparation for competitive exams like NTSE, JSTSE and various Olympiads."
         />
 
-        <div className="mt-12 grid gap-6 sm:mt-14 lg:grid-cols-3 lg:gap-7">
-          {programs.map((program, i) => (
-            <ProgramCard key={program.id} program={program} index={i} />
-          ))}
-        </div>
+        {loading ? (
+          <p className="mt-12 text-center text-sm text-navy-400">Loading programs...</p>
+        ) : error ? (
+          <p className="mt-12 text-center text-sm font-semibold text-red-600">{error}</p>
+        ) : active.length === 0 ? (
+          <p className="mt-12 text-center text-sm text-navy-400">Programs coming soon.</p>
+        ) : (
+          <div className="mt-12 grid gap-6 sm:mt-14 lg:grid-cols-3 lg:gap-7">
+            {active.map((program, i) => (
+              <ProgramCard key={program.id} program={program} index={i} />
+            ))}
+          </div>
+        )}
 
         <div className="mt-10 flex justify-center">
           <Button to="/courses" variant="navy" size="md" icon="arrowRight">

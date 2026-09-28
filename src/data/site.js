@@ -1,10 +1,4 @@
-/**
- * Single source of truth for all website content.
- * When the client sends new details, edit only this file — the components don't need to change.
- *
- * TODO (to be confirmed with the client): email, exact timings,
- * year established, result figures. Every placeholder below is marked with `TODO`.
- */
+
 
 export const brand = {
   name: 'Glare30',
@@ -13,7 +7,7 @@ export const brand = {
   tagline: 'Coaching for Class 6th to 12th',
   description:
     'The C.B.S.E. curriculum combined with preparation for NTSE, JSTSE, Olympiads, IIT-JEE and NEET — all under one roof.',
-  logo: '/logo.svg', // Client's original artwork: drop it into public/ and point this at e.g. '/logo.png'
+  logo: '/logo.svg', 
 }
 
 export const contact = {
@@ -63,117 +57,6 @@ export const stats = [
   { value: 'CBSE', label: 'Curriculum Followed', icon: 'book' },
   { value: '4+', label: 'Competitive Exams', icon: 'target' },
   { value: 'PCM / PCB', label: 'Streams in 11th & 12th', icon: 'atom' },
-]
-
-export const programs = [
-  {
-    id: 'foundation',
-    detail: {
-      overview:
-        'Classes 6th, 7th and 8th decide how comfortable a student will be later. The whole year is spent making the basics unshakeable — and then stretching them a little further than the school syllabus asks.',
-      covers: [
-        {
-          title: 'Complete school syllabus',
-          description: 'Mathematics, Science, Social Science and English — every chapter taught in class, not left for self-study.',
-        },
-        {
-          title: 'One level above the textbook',
-          description: 'Olympiad and NTSE pattern questions are introduced early, so tougher papers never come as a shock.',
-        },
-        {
-          title: 'Habit building',
-          description: 'Regular homework, weekly tests and notes-making — the study habits that carry a student through Class 10th and 12th.',
-        },
-      ],
-      outcome: 'By the end of Class 8th, a student is ready for the board-level jump in Class 9th without any catching up.',
-    },
-    classes: 'Class 6th – 8th',
-    title: 'Foundation Program',
-    summary:
-      'A foundation course built to strengthen the basics, covering the complete school syllabus along with Olympiad and NTSE level practice.',
-    subjects: ['Mathematics', 'Science', 'Social Science', 'English'],
-    highlights: [
-      'Complete coverage of the CBSE syllabus',
-      'Olympiad and NTSE pattern practice',
-      'Weekly tests that build lasting concepts',
-    ],
-    accent: 'leaf',
-    icon: 'sparkles',
-  },
-  {
-    id: 'board',
-    detail: {
-      overview:
-        'These two years carry the first board exam and the first serious competitive exams together. Nothing is rushed — the syllabus is completed with enough time left for revision and test practice.',
-      covers: [
-        {
-          title: 'Science, branch by branch',
-          description: 'Physics, Chemistry and Biology are each taught in detail rather than as one combined subject — this is what makes Class 11th feel easy.',
-        },
-        {
-          title: 'Board-perfect answers',
-          description: 'Sample papers, previous-year questions and answer-writing practice built around the CBSE marking scheme.',
-        },
-        {
-          title: 'NTSE & JSTSE preparation',
-          description: 'Focused sessions on MAT and SAT style reasoning, plus the advanced Science and Maths these exams demand.',
-        },
-      ],
-      outcome: 'A strong board result, and a student already used to the question style of competitive exams.',
-    },
-    classes: 'Class 9th – 10th',
-    title: 'Board + Competitive Program',
-    summary:
-      'Complete board exam preparation with focused training for JSTSE and NTSE. Every branch of Science is taught to its own depth.',
-    subjects: ['Mathematics', 'Science', 'Social Science', 'English'],
-    note: 'In Science, all three branches — Physics, Chemistry and Biology — are covered in detail.',
-    highlights: [
-      'Physics, Chemistry and Biology, each in depth',
-      'Targeted NTSE and JSTSE preparation',
-      'Board pattern sample papers and revision',
-    ],
-    accent: 'navy',
-    featured: true,
-    icon: 'book',
-  },
-  {
-    id: 'senior',
-    detail: {
-      overview:
-        'Class 11th and 12th run on two tracks — the board syllabus and the entrance exam — taught together instead of one after the other. Students choose PCM for engineering or PCB for medical.',
-      covers: [
-        {
-          title: 'PCM — for IIT-JEE',
-          description: 'Physics, Chemistry and Mathematics taken to JEE Mains and Advanced depth, with heavy problem-solving practice.',
-        },
-        {
-          title: 'PCB — for NEET',
-          description: 'Physics, Chemistry and Biology with line-by-line NCERT coverage, since that is where most NEET questions come from.',
-        },
-        {
-          title: 'Boards never sidelined',
-          description: 'Board pattern questions are practised alongside, so the CBSE result does not suffer while preparing for entrances.',
-        },
-      ],
-      outcome: 'A student who can sit the board exam and the entrance exam in the same season without preparing twice.',
-    },
-    classes: 'Class 11th – 12th',
-    title: 'JEE & NEET Program',
-    summary:
-      'Two dedicated streams for senior secondary students — PCM for engineering and PCB for medical — taught alongside the board syllabus.',
-    subjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
-    streams: [
-      { code: 'PCM', for: 'IIT-JEE Preparation', icon: 'calculator' },
-      { code: 'PCB', for: 'NEET Preparation', icon: 'atom' },
-    ],
-    highlights: [
-      'PCM — IIT-JEE focused problem solving',
-      'PCB — NEET oriented NCERT mastery',
-      'Boards and entrance exams prepared side by side',
-    ],
-    accent: 'gold',
-    icon: 'target',
-  },
 ]
 
 export const exams = [

@@ -4,17 +4,13 @@ import DashHeader from '@/components/dashboard/DashHeader'
 import DashSidebar from '@/components/dashboard/DashSidebar'
 import { cn } from '@/utils/cn'
 
-/**
- * The admin shell: a fixed sidebar from `lg` up, a drawer below it.
- * The marketing navbar and footer are deliberately absent — this is a tool,
- * not a page of the website.
- */
+
+
 export default function DashboardLayout() {
   const [navOpen, setNavOpen] = useState(false)
   const location = useLocation()
 
-  // Any navigation (including browser back/forward) closes the drawer, adjusted
-  // during render so it never paints open for a frame on the new page.
+
   const [lastKey, setLastKey] = useState(location.key)
   if (lastKey !== location.key) {
     setLastKey(location.key)
