@@ -12,6 +12,8 @@ const ACCENTS = {
   gold: { chip: 'bg-gold-50 text-gold-700 ring-gold-100', icon: 'bg-gold-300 !text-navy-800', bar: 'bg-gold-300' },
 }
 
+const VIDEOS = ['/video-1.mp4', '/video-2.mp4', '/video-3.mp4', '/video-4.mp4']
+
 function ProgramCard({ program, index }) {
   const accent = ACCENTS[program.accent] ?? ACCENTS.navy
 
@@ -142,6 +144,24 @@ export default function Programs() {
           <Button to="/courses" variant="navy" size="md" icon="arrowRight">
             Explore All Courses
           </Button>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-4">
+          {VIDEOS.map((src, i) => (
+            <Reveal
+              key={src}
+              delay={i * 100}
+              className="overflow-hidden rounded-3xl border border-navy-100 bg-navy-800 shadow-card"
+            >
+              <video
+                src={src}
+                controls
+                playsInline
+                preload="metadata"
+                className="aspect-[9/16] w-full object-cover"
+              />
+            </Reveal>
+          ))}
         </div>
       </Container>
     </section>
